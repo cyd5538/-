@@ -1,19 +1,26 @@
 const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
-let input = fs.readFileSync(filePath).toString().split('\n');
-    
+const input = fs.readFileSync(filePath).toString().trim().split('\n');
 
+[n, ...arr] = input;
+n = Number(n);
+arr = arr.map((i) => i.split(" ").map((a) => Number(a)))
 
-const testCaseArray = [];
-for(let i=1; i<=+input[0]; i++){
-    const tempValue = input[i].split(' ').map((item) => +item);
-    testCaseArray.push([tempValue[0],tempValue[1]])
-}
+arr = arr.sort((a,b) => {
+    if(a[1] - b[1] === 0){
+        return a[0] - b[0];
+    }
+    return a[1] - b[1];
+})
 
-solution(+input[0],testCaseArray);
+let start = arr[0]
+let result = 1;
 
-function solution(T, testcaseArray) {
-    for(let i=0; i<testCaseArray.length; i++) {
-        console.log(testCaseArray[i])
+for(let i = 1; i < arr.length; i++){
+    let num = arr[i];
+    if(start[1] <= num[0]){
+        start = num;
+        result += 1;
     }
 }
+console.log(result)
