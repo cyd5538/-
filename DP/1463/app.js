@@ -2,11 +2,12 @@ const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = +fs.readFileSync(filePath).toString().trim()
 
-// 규칙을 잘 찾아보자
-const dp = [];
-dp[1] = 1;
-dp[2] = 3;
-for(let i=3; i<=input; i++){
-    dp[i] = (dp[i-1] + dp[i-2]*2)%10007
+let array = Array(input+1).fill(0);
+array[1] = 0;
+
+for(let i=2; i<=input; i++){
+    array[i] = array[i-1] + 1; 
+    if(i%2===0) array[i] = Math.min(array[i], array[i/2] + 1)
+    if(i%3===0) array[i] = Math.min(array[i], array[i/3] + 1)
 }
-console.log(dp[input])
+console.log(array[input])
