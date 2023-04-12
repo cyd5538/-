@@ -13,7 +13,6 @@ for (let i = 2; i <= n; i++) {
         count += 1;
         if (count === k) {
           console.log(j);
-
         }
       }
     }
