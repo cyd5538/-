@@ -20,9 +20,7 @@ for (let i = 2; i * i <= MAX; i++) {
 
 for (let k = 0; k < input.length; k++) {
   const v = input[k];
-
   for (let i = Math.ceil(v / 2); i > 1; i--) {
-    console.log(Math.ceil(v / 2))
     if (prime[i] && prime[v - i]) {
       answer.push(`${i} ${v - i}`);
       break;
