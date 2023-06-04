@@ -5,24 +5,23 @@
 function solution(people, limit) {
   let sorted = people.sort((a, b) => a - b);
   
+  let left = 0;
+  let right = sorted.length - 1;
   let answer = 0;
-  let start = 0;
-  let end = people.length -1;
 
-  while(left <= right){
-    let temp = sorted[start] + sorted[end];
-
-    if(temp < limit){
-      start ++
-    }else if(temp > limit){
-      end ++;
+  while (left <= right) {
+    if (sorted[left] + sorted[right] <= limit) {
+      left++;
+      right--;
+    } else {
+      right--;
     }
-
-    answer ++
+    answer++;
   }
 
-  return answer
+  return answer;
 }
+
 
 
 console.log(solution([70, 50, 80, 50],100));
