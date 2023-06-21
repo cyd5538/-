@@ -50,7 +50,6 @@ const bfs = () => {
       answer = Math.max(answer, array[i][j]);
     }
   }
-  console.log(queue,front, rear)
   return answer - 1;
 };
 
